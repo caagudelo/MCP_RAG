@@ -413,4 +413,14 @@ def reindex_vector_database(profile: str = 'auto') -> str:
 if __name__ == "__main__":
     log_mcp_server("Iniciando servidor MCP RAG organizado...")
     warm_up_rag_system()  # Calentamos el sistema al arrancar
-    mcp.run(transport='stdio') 
+    
+    try:
+        mcp.run(transport='stdio')
+    except KeyboardInterrupt:
+        log_mcp_server("✅ Servidor detenido por el usuario (Ctrl+C)")
+    except Exception as e:
+        if "CancelledError" in str(e):
+            log_mcp_server("ℹ️ Servidor MCP cerrado normalmente - esperando conexiones del cliente")
+        else:
+            log_mcp_server(f"❌ Error inesperado: {e}")
+            raise 
