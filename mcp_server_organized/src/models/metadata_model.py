@@ -26,6 +26,10 @@ class MetadataModel:
     file_type: Optional[str] = None
     file_size: Optional[int] = None
     
+    # Información de contenido
+    size_bytes: Optional[int] = None  # Tamaño del contenido en bytes
+    word_count: Optional[int] = None  # Conteo de palabras
+    
     # Información de procesamiento
     processing_method: str = "unknown"
     processing_duration: Optional[float] = None
@@ -97,6 +101,8 @@ class MetadataModel:
             'file_path': self.file_path,
             'file_type': self.file_type,
             'file_size': self.file_size,
+            'size_bytes': self.size_bytes,
+            'word_count': self.word_count,
             'processing_method': self.processing_method,
             'processing_duration': self.processing_duration,
             'structural_info': self.structural_info,
